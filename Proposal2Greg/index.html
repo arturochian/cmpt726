@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Machine Learning Project Proposal</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Machine Learning Project Proposal">
+  <meta name="author" content="Tong He, Li Xiong">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Machine Learning Project Proposal</h1>
+    <h2></h2>
+    <p>Tong He, Li Xiong<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Machine Learning Project Proposal</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Our purpose is to build a model to play a game, and it should figure out how to improve itself only based on the rules of the game.</p>
+
+<p>There are some points to consider:</p>
+
+<ol>
+<li>We can feed a status of game into the model, it will return the strategy</li>
+<li>It must be possible to improve the model, not hard-coded searching algorithm</li>
+<li>It can either learn from existing records of games, or from the games it automatically generates.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Machine Learning Project Proposal</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Further thoughts:</p>
+
+<ol>
+<li>The model could be a machine learning model that accept the status of game as input and return the evaluation score of this status, then we can choose the one with the highest score</li>
+<li>Gradient descent method is natural to the update of model.</li>
+<li>Learn from existing games is faster, but the pitfall is also obvious: data collection is difficult.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Temporal Difference Learning</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Temporal Difference Learning is a learning algorithm from reinforcement learning.</p>
+
+<p>It is proposed in late 1980s, and Gerald Tesauro used it to train a very successful neural network: TD Gammon.</p>
+
+<p>The update of parameters follows:</p>
+
+<p>\[w_{t+1}-w_{t} = \alpha(Y_{t+1}-Y{t})\sum_{k=1}^t \lambda^{t-k}\nabla_w Y_k\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>TD Gammon</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>In the formula:</p>
+
+<p>\[w_{t+1}-w_{t} = \alpha(Y_{t+1}-Y{t})\sum_{k=1}^t \lambda^{t-k}\nabla_w Y_k\]</p>
+
+<ol>
+<li>\(\alpha\) is the learning rate</li>
+<li>\(w\) is the parameter vector</li>
+<li>\(\nabla_w Y_k\) is the gradient of network output with respect to weights</li>
+<li>\(\lambda\) is a heuristic parameter controlling the temporal credit assignment of how an error detected at a given time step feeds back to correct previous estimates.</li>
+<li>In the end of each game, \(z\) will indicate the result of the game, and then use \(z-Y_{t}\) instead of \(Y_{t+1}-Y{t}\)</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>TD Gammon</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>It&#39;s features:</p>
+
+<ol>
+<li>Learning from the games it played with itself.</li>
+<li>There&#39;s no hard-coded artificial rules in the model, nor existing games by human players.</li>
+<li>In the end it will reach a relatively strong level.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>TD Gammon</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Why backgammon?</p>
+
+<ol>
+<li>Linear board, no need to learn the neighbourhood relationship from a two dimensional board.</li>
+<li>Simple rules, easy to implement.</li>
+<li>Existing excellent human players and AIs can be used as comparison.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Machine Learning Project Proposal'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Machine Learning Project Proposal'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Temporal Difference Learning'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='TD Gammon'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='TD Gammon'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='TD Gammon'>
+         6
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
